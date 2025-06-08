@@ -81,4 +81,4 @@ def run_scraper():
 # Actual script entry point
 if __name__ == "__main__":
     # Running the scraper
-    run_scraper()
+    run_scraper
