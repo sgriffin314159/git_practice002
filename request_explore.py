@@ -1,3 +1,4 @@
+# From Python Primer Class - exploring requests
 import requests
 from bs4 import BeautifulSoup
 import threading
