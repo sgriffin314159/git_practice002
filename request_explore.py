@@ -1,7 +1,9 @@
 # From Python Primer Class - exploring requests
+print("Starting program...")
 import requests
 from bs4 import BeautifulSoup
 import threading
+print("imports finished...")
 
 # Global variable (for demonstration of resolution order)
 GLOBAL_VERSION = "Scraper v1.0"
@@ -87,4 +89,7 @@ def run_scraper():
 # Actual script entry point
 if __name__ == "__main__":
     # Running the scraper
-    run_scraper
+    print("starting main...")
+    run_scraper()
+
+print("Program finished.")
