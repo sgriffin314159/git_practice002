@@ -32,7 +32,7 @@ def scrape_page(url, verbose=False):
     # Fetch page
     response = requests.get(url)
 
-    print("Response requests finished. Extracting title...")
+    print("\nResponse requests finished. Extracting title...\n")
 
     # Lambda function to extract title text
     extract_title = lambda soup_obj: soup_obj.title.string if soup_obj.title else "No Title Found"
@@ -83,7 +83,7 @@ def run_scraper():
         t.join()
 
     # Print the final results
-    print("/nAll threads finished. Results:")
+    print("\n\nAll threads finished. Results:")
     for i, link in enumerate(urls):
         print(f"Title for {link}: {results[i]}")
 
