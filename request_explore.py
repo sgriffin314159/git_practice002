@@ -1,9 +1,8 @@
 # From Python Primer Class - exploring requests
-print("Starting program...")
 import requests
 from bs4 import BeautifulSoup
 import threading
-print("imports finished...")
+# print("imports finished...")
 
 # Global variable (for demonstration of resolution order)
 GLOBAL_VERSION = "Scraper v1.0"
@@ -17,17 +16,15 @@ def scrape_page(url, verbose=False):
     :param verbose: If True, prints extra debug info.
     :return: Title of the page or "No Title Found".
     """
-    # Debug print statement
-    print("Inside scrape_page function...")
-    
+        
     # Enclosing scope variable
     local_info = "Scraping local info..."
 
     def show_info():
         # Access 'local_info' from enclosing scope
-        print("Enclosing info:", local_info)
+        print("Enclosing local info from enclosing scope:", local_info)
         # Access 'GLOBAL_VERSION' from global scope
-        print("Global version:", GLOBAL_VERSION)
+        print("Global version from global scope:", GLOBAL_VERSION)
 
     # Show how we can reference different scopes
     show_info()
@@ -50,7 +47,9 @@ def scrape_page(url, verbose=False):
 
 # Wrapper function to update the results list
 def update_results(index, url, results, verbose):
+    print(f"Thread {index} started for {url}...")
     results[index] = scrape_page(url, verbose=verbose)
+    print(f"Thread {index} finished for {url}...")
 
 def run_scraper():
     """
@@ -71,6 +70,7 @@ def run_scraper():
     for i, link in enumerate(urls):
         # 'target' is the function the thread will run
         # 'args' is a tuple with the arguments for that function
+        print(f"Creating thread for {i}...")
         t = threading.Thread(target=update_results, args=(i, link, results, True))
         threads.append(t)
 
@@ -83,13 +83,11 @@ def run_scraper():
         t.join()
 
     # Print the final results
+    print("/nAll threads finished. Results:")
     for i, link in enumerate(urls):
         print(f"Title for {link}: {results[i]}")
 
 # Actual script entry point
 if __name__ == "__main__":
     # Running the scraper
-    print("starting main...")
     run_scraper()
-
-print("Program finished.")
